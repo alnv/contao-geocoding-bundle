@@ -1,7 +1,6 @@
 <?php
 
-namespace Contao\GeoCoding\ContaoManager;
-
+namespace Alnv\ContaoGeoCodingBundle\ContaoManager;
 
 use Symfony\Component\HttpKernel\KernelInterface;
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
@@ -18,9 +17,9 @@ class Plugin implements BundlePluginInterface, RoutingPluginInterface {
 
         return [
 
-            BundleConfig::create('Contao\GeoCoding\ContaoGeoCodingBundle')
+            BundleConfig::create('Alnv\ContaoGeoCodingBundle\AlnvContaoGeoCodingBundle')
                 ->setLoadAfter(['Contao\CoreBundle\ContaoCoreBundle'])
-                ->setReplace(['contao-geocoding']),
+                ->setReplace(['contao-geocoding-bundle']),
         ];
     }
 

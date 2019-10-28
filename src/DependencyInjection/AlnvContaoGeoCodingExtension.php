@@ -1,6 +1,6 @@
 <?php
 
-namespace Contao\GeoCoding\DependencyInjection;
+namespace Alnv\ContaoGeoCodingBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -8,7 +8,7 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 
-class ContaoGeoCodingExtension extends Extension {
+class AlnvContaoGeoCodingExtension extends Extension {
 
 
     public function load( array $configs, ContainerBuilder $container ) {

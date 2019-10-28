@@ -11,7 +11,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Contao\\GeoCoding\\": "src/"
+      "Alnv\\ContaoGeoCodingBundle\\": "src/"
     },
     "classmap": [
       "src/Resources/contao/"
@@ -23,22 +23,18 @@
     ]
   },
   "require": {
-    "php": "^7.0",
-    "symfony/framework-bundle": "3.4.* || 4.1.*",
-    "contao/core-bundle": "^4.4"
+    "php":">=7.1",
+    "contao/core-bundle":"~4.4"
   },
   "config": {
     "preferred-install": "dist"
   },
-  "replace": {
-    "contao-legacy/contao-geocoding": "self.version"
-  },
   "extra": {
     "contao": {
       "sources": {
-        "": "system/modules/contao-geocoding"
+        "": "system/modules/contao-geocoding-bundle"
       }
     },
-    "contao-manager-plugin": "Contao\\GeoCoding\\ContaoManager\\Plugin"
+    "contao-manager-plugin": "Alnv\\ContaoGeoCodingBundle\\ContaoManager\\Plugin"
   }
 }

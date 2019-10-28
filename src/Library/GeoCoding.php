@@ -1,52 +1,22 @@
 <?php
 
-namespace Contao\GeoCoding\Library;
+namespace Alnv\ContaoGeoCodingBundle\Library;
 
-use Contao\GeoCoding\Library\Layers\GoogleMaps as GoogleMaps;
+use Alnv\ContaoGeoCodingBundle\Library\Layers\GoogleMapsGeoCoding;
+
 
 class GeoCoding {
 
 
-    protected $strType;
-    protected $objCache = null;
+    public function getGeoCodingByAddress( $strType, $strAddress, $strLanguage = '' ) {
 
+        switch ( $strType ) {
 
-    public function __construct( $strType = 'google-maps' ) {
+            case 'google-geocoding':
 
-        $this->strType = $strType;
-        $this->objCache = new Cache();
-    }
+                $objGoogleMap = new GoogleMapsGeoCoding( $strAddress, $strLanguage );
 
-
-    public function getGeoCodingByAddress( $strAddress, $strLanguage = 'en' ) {
-
-        if ( !$strAddress ) {
-
-            // throw error
-        }
-
-        $arrCachedResults = $this->objCache->get( $this->strType, $strAddress );
-
-        if ( $arrCachedResults !== null ) {
-
-            return $arrCachedResults;
-        }
-
-        switch ( $this->strType ) {
-
-            case 'google-maps':
-
-                $objGoogleMap = new GoogleMaps( $strLanguage );
-                $arrResult = $objGoogleMap->generateGeoCoding( $strAddress );
-                $this->objCache->set( $this->strType, $strAddress, $arrResult );
-
-                return $arrResult;
-
-                break;
-
-            default:
-
-                // throw error
+                return $objGoogleMap->getGeoCoordinates();
 
                 break;
         }
