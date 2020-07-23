@@ -2,26 +2,20 @@
 
 namespace Alnv\ContaoGeoCodingBundle\Helpers;
 
-
 class AddressBuilder {
-
 
     protected $arrAddressFields = ['street','streetNumber','zip','city','state','country'];
     protected $arrAddress = ['address' => [], 'city' => [], 'state' => [], 'country' => []];
 
+    public function __construct($arrAddress) {
 
-    public function __construct( $arrAddress ) {
-
-        foreach ( $this->arrAddressFields as $strField ) {
-
-            if ( isset( $arrAddress[ $strField ] ) && $arrAddress[ $strField ] !== '' ) {
-
-                $strMethod = 'set' . ucfirst( $strField );
-                $this->{$strMethod}( $arrAddress[ $strField ] );
+        foreach ($this->arrAddressFields as $strField) {
+            if (isset( $arrAddress[$strField]) && $arrAddress[$strField] !== '') {
+                $strMethod = 'set' . ucfirst($strField);
+                $this->{$strMethod}($arrAddress[$strField]);
             }
         }
     }
-
 
     protected function setZip( $strZip ) {
 
@@ -33,7 +27,6 @@ class AddressBuilder {
         $this->arrAddress['city'][] = $strZip;
     }
 
-
     protected function setCity( $strCity ) {
 
         if ( $strCity === '' || $strCity === null ) {
@@ -43,7 +36,6 @@ class AddressBuilder {
 
         $this->arrAddress['city'][] = $strCity;
     }
-
 
     protected function setStreet( $strStreet ) {
 
@@ -55,7 +47,6 @@ class AddressBuilder {
         $this->arrAddress['address'][] = $strStreet;
     }
 
-
     protected function setStreetNumber( $strStreetNumber ) {
 
         if ( $strStreetNumber === '' || $strStreetNumber === null ) {
@@ -65,7 +56,6 @@ class AddressBuilder {
 
         $this->arrAddress['address'][] = $strStreetNumber;
     }
-
 
     protected function setCountry( $strCountry ) {
 
@@ -77,7 +67,6 @@ class AddressBuilder {
         $this->arrAddress['country'][] = $strCountry;
     }
 
-
     protected function setState( $strState ) {
 
         if ( $strState === '' || $strState === null ) {
@@ -88,21 +77,19 @@ class AddressBuilder {
         $this->arrAddress['state'][] = $strState;
     }
 
-
-    public function getAddress() {
+    public function getAddress($strDelimiter=', ') {
 
         $arrAddress = [];
 
-        foreach ( $this->arrAddress as $arrBlock ) {
+        foreach ($this->arrAddress as $arrBlock) {
 
-            if ( empty( $arrBlock ) ) {
-
+            if (empty($arrBlock)) {
                 continue;
             }
 
-            $arrAddress[] = implode( ', ', $arrBlock );
+            $arrAddress[] = implode(' ', $arrBlock);
         }
 
-        return implode( ', ', $arrAddress );
+        return implode($strDelimiter, $arrAddress);
     }
 }
