@@ -4,5 +4,6 @@ namespace Alnv\ContaoGeoCodingBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-
-class AlnvContaoGeoCodingBundle extends Bundle {}
+class AlnvContaoGeoCodingBundle extends Bundle
+{
+}

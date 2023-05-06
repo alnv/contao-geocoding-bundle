@@ -4,12 +4,12 @@ namespace Alnv\ContaoGeoCodingBundle\Cronjobs;
 
 use Alnv\ContaoGeoCodingBundle\Helpers\Automation;
 
+class Monthly
+{
 
-class Monthly {
+    public function clearGeoCodingCache()
+    {
 
-
-    public function clearGeoCodingCache() {
-
-        Automation::clearGeoCodingCacheByInterval( 14 );
+        Automation::clearGeoCodingCacheByInterval(14);
     }
 }

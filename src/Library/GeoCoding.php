@@ -4,9 +4,11 @@ namespace Alnv\ContaoGeoCodingBundle\Library;
 
 use Alnv\ContaoGeoCodingBundle\Library\Layers\GoogleMapsGeoCoding;
 
-class GeoCoding {
+class GeoCoding
+{
 
-    public function getGeoCodingByAddress($strType, $strAddress, $strLanguage = '') {
+    public function getGeoCodingByAddress($strType, $strAddress, $strLanguage = '')
+    {
 
         switch ($strType) {
             case 'google-geocoding':

@@ -2,24 +2,28 @@
 
 namespace Alnv\ContaoGeoCodingBundle\Helpers;
 
-class AddressBuilder {
+class AddressBuilder
+{
 
-    protected $arrAddressFields = ['street','streetNumber','zip','city','state','country'];
+    protected $arrAddressFields = ['street', 'streetNumber', 'zip', 'city', 'state', 'country'];
+
     protected $arrAddress = ['address' => [], 'city' => [], 'state' => [], 'country' => []];
 
-    public function __construct($arrAddress) {
+    public function __construct($arrAddress)
+    {
 
         foreach ($this->arrAddressFields as $strField) {
-            if (isset( $arrAddress[$strField]) && $arrAddress[$strField] !== '') {
+            if (isset($arrAddress[$strField]) && $arrAddress[$strField] !== '') {
                 $strMethod = 'set' . ucfirst($strField);
                 $this->{$strMethod}($arrAddress[$strField]);
             }
         }
     }
 
-    protected function setZip( $strZip ) {
+    protected function setZip($strZip)
+    {
 
-        if ( $strZip === '' || $strZip === null ) {
+        if ($strZip === '' || $strZip === null) {
 
             return null;
         }
@@ -27,9 +31,10 @@ class AddressBuilder {
         $this->arrAddress['city'][] = $strZip;
     }
 
-    protected function setCity( $strCity ) {
+    protected function setCity($strCity)
+    {
 
-        if ( $strCity === '' || $strCity === null ) {
+        if ($strCity === '' || $strCity === null) {
 
             return null;
         }
@@ -37,9 +42,10 @@ class AddressBuilder {
         $this->arrAddress['city'][] = $strCity;
     }
 
-    protected function setStreet( $strStreet ) {
+    protected function setStreet($strStreet)
+    {
 
-        if ( $strStreet === '' || $strStreet === null ) {
+        if ($strStreet === '' || $strStreet === null) {
 
             return null;
         }
@@ -47,9 +53,10 @@ class AddressBuilder {
         $this->arrAddress['address'][] = $strStreet;
     }
 
-    protected function setStreetNumber( $strStreetNumber ) {
+    protected function setStreetNumber($strStreetNumber)
+    {
 
-        if ( $strStreetNumber === '' || $strStreetNumber === null ) {
+        if ($strStreetNumber === '' || $strStreetNumber === null) {
 
             return null;
         }
@@ -57,9 +64,10 @@ class AddressBuilder {
         $this->arrAddress['address'][] = $strStreetNumber;
     }
 
-    protected function setCountry( $strCountry ) {
+    protected function setCountry($strCountry)
+    {
 
-        if ( $strCountry === '' || $strCountry === null ) {
+        if ($strCountry === '' || $strCountry === null) {
 
             return null;
         }
@@ -67,9 +75,10 @@ class AddressBuilder {
         $this->arrAddress['country'][] = $strCountry;
     }
 
-    protected function setState( $strState ) {
+    protected function setState($strState)
+    {
 
-        if ( $strState === '' || $strState === null ) {
+        if ($strState === '' || $strState === null) {
 
             return null;
         }
@@ -77,7 +86,8 @@ class AddressBuilder {
         $this->arrAddress['state'][] = $strState;
     }
 
-    public function getAddress($strDelimiter=', ') {
+    public function getAddress($strDelimiter = ', ')
+    {
 
         $arrAddress = [];
 
