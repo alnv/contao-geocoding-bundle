@@ -5,9 +5,9 @@ namespace Alnv\ContaoGeoCodingBundle\Helpers;
 class AddressBuilder
 {
 
-    protected $arrAddressFields = ['street', 'streetNumber', 'zip', 'city', 'state', 'country'];
+    protected array $arrAddressFields = ['street', 'streetNumber', 'zip', 'city', 'state', 'country'];
 
-    protected $arrAddress = ['address' => [], 'city' => [], 'state' => [], 'country' => []];
+    protected array $arrAddress = ['address' => [], 'city' => [], 'state' => [], 'country' => []];
 
     public function __construct($arrAddress)
     {
@@ -86,7 +86,7 @@ class AddressBuilder
         $this->arrAddress['state'][] = $strState;
     }
 
-    public function getAddress($strDelimiter = ', ')
+    public function getAddress($strDelimiter = ', '): string
     {
 
         $arrAddress = [];

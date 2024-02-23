@@ -7,7 +7,7 @@ use Contao\Database;
 class Automation
 {
 
-    public static function clearGeoCodingCacheByInterval($intDays)
+    public static function clearGeoCodingCacheByInterval($intDays): void
     {
 
         $objDatabase = Database::getInstance();
@@ -15,7 +15,7 @@ class Automation
         $objDatabase->prepare('DELETE FROM tl_geocoding_cache WHERE tstamp < ?')->execute($intTstamp);
     }
 
-    public static function clearGeoCodingCache()
+    public static function clearGeoCodingCache(): void
     {
 
         $objDatabase = Database::getInstance();

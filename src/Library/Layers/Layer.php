@@ -10,11 +10,8 @@ abstract class Layer
 {
 
     protected $strHash = null;
-
     protected $strAddress = null;
-
     protected $strLanguage = null;
-
     protected $arrGeoCoordinates = null;
 
 
