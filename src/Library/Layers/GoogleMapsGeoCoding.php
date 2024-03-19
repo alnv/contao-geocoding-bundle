@@ -3,6 +3,7 @@
 namespace Alnv\ContaoGeoCodingBundle\Library\Layers;
 
 use Contao\Config;
+use Symfony\Component\HttpClient\HttpClient;
 use Contao\CoreBundle\Monolog\ContaoContext;
 use Contao\System;
 use Psr\Log\LogLevel;
@@ -18,21 +19,13 @@ class GoogleMapsGeoCoding extends Layer
         $strRequest = sprintf('https://maps.googleapis.com/maps/api/geocode/json?address=%s&key=%s&language=%s&region=%s', $strAddress, $strGoogleApiKey, urlencode($strLanguage), urlencode($strLanguage));
 
         $arrGeoCoordinates = [];
-        $objRequest = new Request();
-        $objRequest->send($strRequest);
 
-        if ($objRequest->hasError()) {
+        $objClient = HttpClient::create();
+        $objRequest = $objClient->request('GET', $strRequest);
 
-            System::getContainer()
-                ->get('monolog.logger.contao')
-                ->log(LogLevel::INFO, $objRequest->error, ['contao' => new ContaoContext(__CLASS__ . '::' . __FUNCTION__)]);
+        $arrResponse = $objRequest->toArray();
 
-            return null;
-        }
-
-        $arrResponse = $objRequest->response ? json_decode($objRequest->response, true) : [];
-
-        if (!is_array($arrResponse) || empty($arrResponse)) {
+        if (empty($arrResponse)) {
             return null;
         }
 
@@ -40,7 +33,7 @@ class GoogleMapsGeoCoding extends Layer
 
             System::getContainer()
                 ->get('monolog.logger.contao')
-                ->log(LogLevel::INFO, $arrResponse['error_message'], ['contao' => new ContaoContext(__CLASS__ . '::' . __FUNCTION__)]);
+                ->log(LogLevel::ERROR, $arrResponse['error_message'], ['contao' => new ContaoContext(__CLASS__ . '::' . __FUNCTION__)]);
 
             return null;
         }
